@@ -43,9 +43,6 @@ private:
 	ThreadCountProxy() :
 		count(0), mtx(), mtx_thread_count(), cv_thread_count()
 	{
-
-		std::cout << "Default Constructor\n"; //This line shows how many instances of class ThreadCountProxy are being created! 
-
 	}
 	static void CleanUp(ThreadCountProxy* pObject)
 	{
@@ -69,10 +66,6 @@ private:
 		static std::once_flag flag;
 		static smartpoiner  pInstance(nullptr, &CleanUp);
 		std::call_once(flag, CallOnce, pInstance);
-		if (pInstance == nullptr)
-		{
-			std::cout << "It is nullptr\n"; //It is used to test whether the Singleton Pattern is thread-safe and works properly or not
-		}
 		return pInstance;
 	}
 
